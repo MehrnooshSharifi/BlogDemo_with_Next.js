@@ -1,7 +1,22 @@
 import axios from "axios";
-import { BookmarkIcon, ShareIcon } from "@heroicons/react/24/outline";
+import {
+  BookmarkIcon,
+  DocumentDuplicateIcon,
+  ShareIcon,
+} from "@heroicons/react/24/outline";
 import PostInteractions from "@/components/Posts/PostInteractions";
+import { FaLinkedin, FaTelegramPlane, FaTwitterSquare } from "react-icons/fa";
+import Link from "next/link";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { useState } from "react";
 const PostPage = ({ post }) => {
+  const [copied, setCopied] = useState(false);
+  const copyHandler = () => {
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 1000);
+  };
   console.log(post);
   return (
     <div className=" bg-gray-50 min-h-screen">
@@ -76,8 +91,35 @@ const PostPage = ({ post }) => {
             })}
           </ul>
         </section>
-        <div>
-           <PostInteractions blog={post}/>
+        <div className="flex items-center gap-x-5 relative">
+          <PostInteractions blog={post} />
+          <div className="flex gap-x-2">
+            <Link
+              href={`https://www.linkedin.com/sharing/share-offsite/?url=http://localhost:3000/${post.hashId}/${post.slug}`}
+            >
+              <FaLinkedin className="fill-gray-500 cursor-pointer" />
+            </Link>
+            <Link
+              href={`https://t.me/share/url?url=http://localhost:3000/${post.hashId}/${post.slug}`}
+            >
+              <FaTelegramPlane className="fill-gray-500 cursor-pointer" />
+            </Link>
+            <Link
+              href={`https://twitter.com/intent/tweet?url=http://localhost:3000/${post.hashId}/${post.slug}`}
+            >
+              <FaTwitterSquare className="fill-gray-500 cursor-pointer" />
+            </Link>
+          </div>
+          <div className="flex border border-1 rounded-2xl px-3 py-1 cursor-pointer whitespace-nowrap">
+            <DocumentDuplicateIcon className="w-5 h-5 stroke-gray-500" />
+            <CopyToClipboard
+              text={`http://localhost:3000/${post.hashId}/${post.slug}`}
+              onCopy={copyHandler}
+            >
+              <span className="text-[12px] text-gray-500">کپی لینک</span>
+            </CopyToClipboard>
+          </div>
+          {copied && <span className=" absolute -top-3 md:top-0 whitespace-nowrap right-48  md:right-80 text-xs md:-mr-6 md:text-sm text-purple-500">کپی انجام شد</span>}
         </div>
       </div>
     </div>
