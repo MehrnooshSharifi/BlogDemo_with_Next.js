@@ -9,6 +9,8 @@ import { FaLinkedin, FaTelegramPlane, FaTwitterSquare } from "react-icons/fa";
 import Link from "next/link";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useState } from "react";
+import PostList from "@/components/Posts/PostList";
+import PostComments from "@/components/Posts/postComments";
 const PostPage = ({ post }) => {
   const [copied, setCopied] = useState(false);
   const copyHandler = () => {
@@ -43,7 +45,7 @@ const PostPage = ({ post }) => {
             </div>
           </div>
         </header>
-        <main className="prose prose-sm md:prose-base prose-h2:text-purple-800 prose-h1:text-purple-900 md:prose-h1:text-3xl md:prose-h1:font-black md:prose-h2:text-2xl mb-8">
+        <main className=" mx-auto prose prose-sm md:prose-base prose-h2:text-purple-800 prose-h1:text-purple-900 md:prose-h1:text-3xl md:prose-h1:font-black md:prose-h2:text-2xl mb-8">
           <h1>{post.title}</h1>
           <h2>عنوان تستی اول</h2>
           <p>
@@ -91,7 +93,7 @@ const PostPage = ({ post }) => {
             })}
           </ul>
         </section>
-        <div className="flex items-center gap-x-5 relative">
+        <div className="flex items-center gap-x-5 relative mb-10 mt-4 ">
           <PostInteractions blog={post} />
           <div className="flex gap-x-2">
             <Link
@@ -121,6 +123,14 @@ const PostPage = ({ post }) => {
           </div>
           {copied && <span className=" absolute -top-3 md:top-0 whitespace-nowrap right-48  md:right-80 text-xs md:-mr-6 md:text-sm text-purple-500">کپی انجام شد</span>}
         </div>
+        <hr className="mb-10" />
+        {/* Similar Posts */}
+        <section className="">
+          <h2 className="font-extrabold text-2x md:text-3xl mb-10">پست های مشابه</h2>
+          <div className="grid grid-cols-6 lg:gap-x-8"><PostList blogsData={post.related}/></div>
+        </section>
+        {/* post Comments */}
+        <PostComments post={post}/>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@
 import Link from "next/link";
 import PostInteractions from "./PostInteractions";
 const PostList = ({ blogsData }) => {
-  return blogsData.docs.map((blog) => {
+  return blogsData.map((blog) => {
     return (
       <div
         key={blog._id}
@@ -51,6 +51,7 @@ const PostList = ({ blogsData }) => {
               </span>
             </div>
           </div>
+
         </div>
       </div>
     );
