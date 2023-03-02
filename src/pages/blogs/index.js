@@ -3,10 +3,11 @@ import MobileCategory from "@/components/Posts/MobileCategory";
 import PostList from "@/components/Posts/PostList";
 import SortBar from "@/components/Posts/SortBar";
 import axios from "axios";
+import Layout from "src/container/Layout";
 const BlogsPage = ({ blogsData, postCategories }) => {
   console.log(postCategories);
   return (
-    <div className="bg-gray-50">
+    <Layout>
       <div className="container mx-auto lg:max-w-screen-lg px-4 md:px-0">
         {/* category Mobile */}
         <MobileCategory postCategories={postCategories} />
@@ -25,7 +26,7 @@ const BlogsPage = ({ blogsData, postCategories }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

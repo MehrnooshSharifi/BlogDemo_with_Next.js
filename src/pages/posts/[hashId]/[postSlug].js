@@ -11,6 +11,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useState } from "react";
 import PostList from "@/components/Posts/PostList";
 import PostComments from "@/components/Posts/postComments";
+import Layout from "src/container/Layout";
 const PostPage = ({ post }) => {
   const [copied, setCopied] = useState(false);
   const copyHandler = () => {
@@ -21,7 +22,7 @@ const PostPage = ({ post }) => {
   };
   console.log(post);
   return (
-    <div className=" bg-gray-50 min-h-screen">
+    <Layout>
       <div className="max-w-screen-lg container mx-auto px-6 md:px-0">
         <header className="flex flex-col items-center md:flex-row md:justify-evenly md:items-center mb-10">
           <div className="flex justify-between items-center">
@@ -132,7 +133,7 @@ const PostPage = ({ post }) => {
         {/* post Comments */}
         <PostComments post={post}/>
       </div>
-    </div>
+    </Layout>
   );
 };
 
