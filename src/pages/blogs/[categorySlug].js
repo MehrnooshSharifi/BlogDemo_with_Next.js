@@ -1,3 +1,4 @@
+import PaginationComponent from "@/common/Pagination";
 import DesktopCategory from "@/components/Posts/DescktopCategory";
 import MobileCategory from "@/components/Posts/MobileCategory";
 import PostList from "@/components/Posts/PostList";
@@ -8,7 +9,6 @@ const CategoryPage = ({ blogsData, postCategories }) => {
   console.log(postCategories);
   return (
     <Layout>
-      {" "}
       <div className="container mx-auto lg:max-w-screen-lg px-4 md:px-0">
         {/* category Mobile */}
         <MobileCategory postCategories={postCategories} />
@@ -24,6 +24,7 @@ const CategoryPage = ({ blogsData, postCategories }) => {
           {/* Blog Section */}
           <div className=" md:col-span-9 grid grid-cols-6 gap-8 ">
             <PostList blogsData={blogsData.docs} />
+            <PaginationComponent blogsData={blogsData}  />
           </div>
         </div>
       </div>
@@ -34,11 +35,17 @@ const CategoryPage = ({ blogsData, postCategories }) => {
 export default CategoryPage;
 
 export async function getServerSideProps(context) {
-  const { query } = context;
+  const { query, req } = context;
   const queryString = new URLSearchParams(query).toString();
   console.log(queryString);
   const { data: result } = await axios.get(
-    `http://localhost:5000/api/posts?${queryString}`
+    `http://localhost:5000/api/posts?${queryString}`,
+    {
+      withCredentials: true,
+      headers: {
+        Cookie: req.headers.cookie || "",
+      },
+    }
   );
   const { data } = result;
   const { data: postCategories } = await axios.get(

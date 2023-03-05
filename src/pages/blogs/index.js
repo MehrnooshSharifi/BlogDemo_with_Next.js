@@ -4,6 +4,7 @@ import PostList from "@/components/Posts/PostList";
 import SortBar from "@/components/Posts/SortBar";
 import axios from "axios";
 import Layout from "src/container/Layout";
+import PaginationComponent from "@/common/Pagination";
 const BlogsPage = ({ blogsData, postCategories }) => {
   console.log(postCategories);
   return (
@@ -23,6 +24,7 @@ const BlogsPage = ({ blogsData, postCategories }) => {
           {/* Blog Section */}
           <div className=" md:col-span-9 grid grid-cols-6 gap-8 ">
             <PostList blogsData={blogsData.docs} />
+            <PaginationComponent blogsData={blogsData}  />
           </div>
         </div>
       </div>
@@ -32,9 +34,17 @@ const BlogsPage = ({ blogsData, postCategories }) => {
 
 export default BlogsPage;
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps({ req, query }) {
+  const queryString = new URLSearchParams(query).toString();
+  console.log(queryString);
   const { data: result } = await axios.get(
-    "http://localhost:5000/api/posts?limit=10&page=1"
+    `http://localhost:5000/api/posts?${queryString}`,
+    {
+      withCredentials: true,
+      headers: {
+        Cookie: req.headers.cookie || "",
+      },
+    }
   );
   const { data } = result;
   const { data: postCategories } = await axios.get(

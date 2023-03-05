@@ -1,9 +1,8 @@
 import { UserIcon } from "@heroicons/react/24/outline";
 import { Suspense, useState } from "react";
 import CommentForm from "./CommentForm";
-const SingleComment = ({ comment }) => {
+const SingleComment = ({ comment , postId }) => {
   const [onReply, setOnReply] = useState(false);
-  const [replyValue, setReplyValue] = useState("");
   return (
     <div className="border border-gray-500 rounded p-2 md:p-4 m-1">
       <div className="flex gap-x-4 ">
@@ -38,7 +37,7 @@ const SingleComment = ({ comment }) => {
               ارسال پاسخ
             </button>
           </form> */}
-          <CommentForm comment={replyValue} setComment={setReplyValue}/>
+          <CommentForm  postId={postId} responseTo={comment._id} setOnReply={setOnReply}/>
         </div>
       )}
     </div>

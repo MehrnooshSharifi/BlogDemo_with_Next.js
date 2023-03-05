@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { useRouter } from "next/router";
 const DesktopCategory = ({ postCategories }) => {
   const [isOpen, setIsOpen] = useState(true);
+  const {query} = useRouter();
   return (
-    <div className="bg-white rounded-3xl overflow-hidden">
+    <div className="bg-white rounded-3xl overflow-hidden sticky top-24">
       {/* accordion Header */}
       <div
         className="flex justify-between items-center py-4 px-4 cursor-pointer bg-purple-100"
@@ -18,8 +20,8 @@ const DesktopCategory = ({ postCategories }) => {
         />
       </div>
       {/* accordion content */}
-      <div className={`pr-4 ${isOpen ? "block" : "hidden"}`}>
-        <Link className="block py-2 hover:bg-purple-50" href="/blogs">
+      <div className={` ${isOpen ? "block" : "hidden"}`}>
+        <Link className={`block py-2  hover:bg-purple-50 ${!query.categorySlug ? "bg-purple-800 text-white hover:bg-purple-700 rounded-sm" : ""}`} href="/blogs">
           همه مقالات
         </Link>
         {postCategories.data.map((category) => {
@@ -27,7 +29,7 @@ const DesktopCategory = ({ postCategories }) => {
             <Link
               key={category._id}
               href={`/blogs/${category.englishTitle}`}
-              className="block py-2 hover:bg-purple-50"
+              className={`block p-2 hover:bg-purple-50 ${query.categorySlug===category.englishTitle ? "bg-purple-800 text-white hover:bg-purple-700 rounded-sm" : ""}`}
             >
               {category.title}
             </Link>

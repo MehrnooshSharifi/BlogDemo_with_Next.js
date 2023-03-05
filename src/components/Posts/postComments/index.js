@@ -4,7 +4,6 @@ import ReplyComment from "./ReplyComment";
 import SingleComment from "./SingleComment";
 
 const PostComments = ({ post }) => {
-  const [comment, setComment] = useState("");
   return (
     <div className="">
       <h2 className="mt-8 mb-8 text-lg font-bold">نظرات</h2>
@@ -13,8 +12,8 @@ const PostComments = ({ post }) => {
           !comment.responseTo &&
           comment.status === 2 && (
             <div key={comment._id}>
-              <SingleComment comment={comment} />
-              <ReplyComment comments={post.comments} parentCommentId={comment._id}/>
+              <SingleComment comment={comment} postId={post._id} />
+              <ReplyComment comments={post.comments} parentCommentId={comment._id} postId={post._id}/>
             </div>
           )
         );
@@ -33,7 +32,7 @@ const PostComments = ({ post }) => {
             ارسال نظر
           </button>
         </form> */}
-        <CommentForm comment={comment} setComment={setComment}/>
+        <CommentForm  postId={post._id} responseTo={null}/>
       </div>
     </div>
   );
