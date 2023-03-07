@@ -1,5 +1,6 @@
 
 import Link from "next/link";
+import Image from "next/image";
 import PostInteractions from "./PostInteractions";
 const PostList = ({ blogsData }) => {
   return blogsData.map((blog) => {

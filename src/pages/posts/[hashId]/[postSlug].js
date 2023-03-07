@@ -12,6 +12,7 @@ import { useState } from "react";
 import PostList from "@/components/Posts/PostList";
 import PostComments from "@/components/Posts/postComments";
 import Layout from "src/container/Layout";
+import Image from "next/image";
 const PostPage = ({ post }) => {
   const [copied, setCopied] = useState(false);
   const copyHandler = () => {
