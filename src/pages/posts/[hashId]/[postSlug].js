@@ -28,7 +28,7 @@ const PostPage = ({ post }) => {
         <header className="flex flex-col items-center md:flex-row md:justify-evenly md:items-center mb-10">
           <div className="flex justify-between items-center">
             <div className="ml-4">
-              <Image src="/images/me.jpg" className="w-16 h-16 rounded-full" />
+              <Image src="/images/me.jpg" className="w-16 h-16 rounded-full" alt=""/>
             </div>
             <div className="flex flex-col">
               <p>مهرنوش شریفی</p>
@@ -88,7 +88,7 @@ const PostPage = ({ post }) => {
           <ul className="flex items-center flex-wrap gap-x-4">
             {["فرانت اند", "جاوا اسکریپت", "ریکت", "نکست"].map((tag, index) => {
               return (
-                <li className="px-3 py-1 rounded-2xl bg-gray-200 hover:bg-gray-100 transition-all duration-300 cursor-pointer text-gray-600 text-sm mb-3 ">
+                <li key={tag.id} className="px-3 py-1 rounded-2xl bg-gray-200 hover:bg-gray-100 transition-all duration-300 cursor-pointer text-gray-600 text-sm mb-3 ">
                   {tag}
                 </li>
               );
