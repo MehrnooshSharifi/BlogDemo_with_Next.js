@@ -11,7 +11,7 @@ const PostList = ({ blogsData }) => {
         {/* CoverImage */}
         <div className="aspect-w-16 aspect-h-9 mb-5">
           <Link href={`/posts/${blog.hashId}/${blog.slug}`}>
-            <img
+            <Image
               src={blog.coverImage}
               alt=""
               className="rounded-2xl w-full h-full object-center object-cover"
@@ -29,7 +29,7 @@ const PostList = ({ blogsData }) => {
             {/* Blog author-category */}
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center">
-                <img
+                <Image
                   src="/images/me.jpg"
                   alt="next"
                   className="w-5 h-6 rounded-full ring-2 ring-white ml-2"

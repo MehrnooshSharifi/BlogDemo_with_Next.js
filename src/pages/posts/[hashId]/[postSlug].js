@@ -27,7 +27,7 @@ const PostPage = ({ post }) => {
         <header className="flex flex-col items-center md:flex-row md:justify-evenly md:items-center mb-10">
           <div className="flex justify-between items-center">
             <div className="ml-4">
-              <img src="/images/me.jpg" className="w-16 h-16 rounded-full" />
+              <Image src="/images/me.jpg" className="w-16 h-16 rounded-full" />
             </div>
             <div className="flex flex-col">
               <p>مهرنوش شریفی</p>
@@ -62,7 +62,7 @@ const PostPage = ({ post }) => {
             اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد
             استفاده قرار گیرد.
           </p>
-          <img
+          <Image
             src={post.coverImage}
             alt={post.slug}
             className="w-full h-full"
